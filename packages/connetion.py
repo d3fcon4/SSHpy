@@ -25,8 +25,8 @@ class Connection:
                 paramiko.AuthenticationException,
                 paramiko.BadAuthenticationType,
                 paramiko.BadHostKeyException,
-                socket.error) as e:
-            print(f'Connection Error! {e}')
+                socket.error):
+            print(f'Connection Error!')
 
     def command_line(self, cmd):
         try:
