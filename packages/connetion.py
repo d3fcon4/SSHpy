@@ -29,12 +29,17 @@ class Connection:
             print(f'Connection Error!')
 
     def command_line(self, cmd):
+        results = []
         try:
             stdin, stdout, stderr = self.ssh_client.exec_command(cmd)
             stdout.channel.recv_exit_status()
             output = stdout.readlines()
             for lines in output:
-                print(lines)
+                results.append(lines.strip('\n'))
+
+            for x in results:
+                print(x.strip())
+
             self.ssh_client.close()
 
         except paramiko.SSHException:
